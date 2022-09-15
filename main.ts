@@ -1,10 +1,15 @@
 koi.koi_classified(function (classId) {
-    fishdetected += 1
-    basic.showString(classId)
-    pins.digitalWritePin(DigitalPin.P7, 1)
-    basic.pause(200)
-    pins.digitalWritePin(DigitalPin.P7, 0)
+    currentid = classId
+    if (currentid != previd) {
+        pins.digitalWritePin(DigitalPin.P12, 1)
+        basic.pause(1000)
+        pins.digitalWritePin(DigitalPin.P12, 0)
+        basic.pause(1000)
+    }
+    previd = currentid
 })
+let previd = ""
+let currentid = ""
 koi.koi_init(SerialPin.P14, SerialPin.P15)
 basic.showIcon(IconNames.SmallHeart)
 koi.koi_cls_load("true.bin")
